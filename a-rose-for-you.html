@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Rose for You</title>
+    <style>
+        /* Resetting default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            font-family: 'Cursive', sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Rose stem */
+        .rose-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .stem {
+            width: 4px;
+            height: 200px;
+            background-color: green;
+            position: relative;
+            z-index: 1;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 20px;
+            height: 50px;
+            background-color: green;
+            border-radius: 20px;
+        }
+
+        .leaf.left {
+            top: 50px;
+            left: -20px;
+            transform: rotate(-45deg);
+        }
+
+        .leaf.right {
+            top: 100px;
+            right: -20px;
+            transform: rotate(45deg);
+        }
+
+        /* Rose petals */
+        .rose {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+            animation: bloom 3s ease-in-out forwards;
+        }
+
+        .petal {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: darkred;
+            border-radius: 50%;
+        }
+
+        .petal1 { top: 0; left: 50%; transform: translateX(-50%); }
+        .petal2 { top: 50%; left: 0; transform: translateY(-50%); }
+        .petal3 { top: 50%; right: 0; transform: translateY(-50%); }
+        .petal4 { bottom: 0; left: 50%; transform: translateX(-50%); }
+
+        /* Floating animation for rose */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Blooming animation for petals */
+        @keyframes bloom {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        /* Message styling */
+        .message {
+            text-align: center;
+            font-size: 2rem;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 3s ease-in-out;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Message transition */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Text glow effect */
+        .message p {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Rose and stem -->
+    <div class="rose-container">
+        <div class="rose">
+            <div class="petal petal1"></div>
+            <div class="petal petal2"></div>
+            <div class="petal petal3"></div>
+            <div class="petal petal4"></div>
+        </div>
+        <div class="stem">
+            <div class="leaf left"></div>
+            <div class="leaf right"></div>
+        </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="message">
+        <p>For you, my dear, across the distance.</p>
+    </div>
+
+    <script>
+        // Romantic Messages
+        const messages = [
+            "For you, my dear, across the distance.",
+            "Roses fade, but my love for you never will.",
+            "Every petal is a reminder that you are cherished.",
+            "No matter how far, I hold you close in my thoughts."
+        ];
+
+        let messageIndex = 0;
+        const messageElement = document.querySelector('.message p');
+
+        // Function to cycle through messages
+        setInterval(() => {
+            messageElement.style.opacity = '0';
+            setTimeout(() => {
+                messageElement.textContent = messages[messageIndex];
+                messageElement.style.opacity = '1';
+                messageIndex = (messageIndex + 1) % messages.length;
+            }, 1000);
+        }, 5000); // Changes every 5 seconds
+    </script>
+</body>
+</html>
